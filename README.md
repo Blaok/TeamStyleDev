@@ -47,3 +47,4 @@ model:assignment
 - course_id:integer **所属课程ID**
 - startat:datetime **开放日期**
 - deadline:datetime **截止日期**
+
