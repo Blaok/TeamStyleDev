@@ -1,0 +1,6 @@
+<div class="jumbotron">
+  <h1><%= link_to @upload.name, "/courses/files/#{@upload.id}" %></h1>
+  <h2>属于课程：<%= link_to (@course=Course.find_by_id(@upload.course_id)).name, @course %></h2>
+  <p class="lead"><%= @upload.information %></p>
+</div>
+

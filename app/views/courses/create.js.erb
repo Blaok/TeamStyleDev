@@ -1,0 +1,19 @@
+$.ajaxSetup({headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')}});
+<% if @course.errors.empty? %>
+  document.getElementById("error_msg").innerHTML='<div class="alert alert-success alert-dismissable fade in">课程开设成功</div>';
+  setTimeout("location.href=\"/courses/<%=@course.id-%>\"",1000);
+<% else %>
+<%
+    message=[]
+    attributes=[]
+    @course.errors.each do |attr,msg|
+      if not attributes.include?(attr)
+        message<<msg
+        attributes<<attr
+      end
+    end
+    errors=raw sanitize(simple_format(message.join('<br/>')),:tags=>(%w(br)))
+%>
+  document.getElementById("error_msg").innerHTML='<div class="alert alert-danger alert-dismissable fade in"><%= errors %></div>';
+  setTimeout("document.getElementById(\"error_msg\").innerHTML=''",2500);
+<% end %>

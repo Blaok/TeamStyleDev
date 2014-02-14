@@ -1,0 +1,7 @@
+ <div class="footer">
+  <p>By Blaok @ EESAST,THU with honor.
+    <% if User.find_by_id(session[:user_id]) %>
+      <%= link_to '注销', '/logout', method: :delete, data: { confirm: '确定注销登录?' }, class:'foot-pullleft mute' %>
+    <% end %>
+   </p>
+ </div>

@@ -1,0 +1,21 @@
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+<% if not flash[:error] %>
+  document.getElementById("login_error_msg").innerHTML='\
+<div class="alert alert-success alert-dismissable fade in">\
+  登录成功\
+</div>\
+';
+  setTimeout("location.href = \"/\"",500);
+<% else %>
+  document.getElementById("login_error_msg").innerHTML='\
+<div class="alert alert-danger alert-dismissable fade in">\
+  <%= flash[:error] %>\
+</div>\
+';
+  <% flash[:error]=nil %>
+  setTimeout("document.getElementById(\"login_error_msg\").innerHTML=''",2500);
+<% end %>

@@ -1,0 +1,36 @@
+<% if flash[:alert] %>
+  <script>
+    alert('<%=flash[:alert]-%>')
+  </script>
+<% end %>
+
+<div class="jumbotron">
+  <h1>Welcome</h1>
+</div>
+
+<div class="row marketing">
+  <div class="col-lg-6">
+    <h4><a href="/users">用户列表</a></h4>
+    <p>完整的用户列表</p>
+
+    <h4><a href="/courses">课程列表</a></h4>
+    <p>所有的课程列表</p>
+
+    <h4><a href="/assignments">作业列表</a></h4>
+    <p>所有的作业列表</p>
+  </div>
+
+  <div class="col-lg-6">
+    <h4><a data-toggle="modal" data-target="#add_course">开设课程</a></h4>
+    <p>如果你是教员的话</p>
+
+    <h4><a href="/course/files">课件列表</a></h4>
+    <p>所有课程的课件</p>
+
+    <h4>Subheading</h4>
+    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+  </div>
+</div>
+<%= render 'add_course' %>
+<%= render 'users/signup' %>
+<%= render 'users/signin' %>

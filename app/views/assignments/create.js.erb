@@ -1,0 +1,31 @@
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+<% if @assignment.errors.empty? %>
+  document.getElementById("error_msg_new_assignment").innerHTML='\
+<div class="alert alert-success alert-dismissable fade in">\
+  作业布置成功\
+</div>\
+';
+  setTimeout("location.href = \"/assignments/<%=@assignment.id-%>\"",1000);
+<% else %>
+<%
+    message=[]
+    attributes=[]
+    @assignment.errors.each do |attr,msg|
+      if not attributes.include?(attr)
+        message<<msg
+        attributes<<attr
+      end
+    end
+    errors=raw sanitize(simple_format(message.join('<br/>')),:tags=>(%w(br)))
+%>
+  document.getElementById("error_msg_new_assignment").innerHTML='\
+<div class="alert alert-danger alert-dismissable fade in">\
+  <%= errors %>\
+</div>\
+';
+  setTimeout("document.getElementById(\"error_msg_new_assignment\").innerHTML=''",2500);
+<% end %>

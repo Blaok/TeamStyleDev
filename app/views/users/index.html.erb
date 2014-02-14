@@ -1,0 +1,77 @@
+<div class="page-header">
+  <h4>用户列表</h4>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped table-hover table-condensed sortable" id="userssss">
+    <thead>
+      <tr>
+        <th>类别</th>
+        <th>用户名</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>班级</th>
+        <th>电子邮件</th>
+        <th>电话</th>
+        <% if admin1?(@current_user) %>
+        <th class="sorttable_nosort"></th>
+        <th class="sorttable_nosort"></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.administration==0 ? raw('<b class="label label-primary">网管</b>') : user.administration==1 ? raw('<b class="label label-success">教员</b>') : user.administration==2 ? raw('<b class="label label-info">指导员</b>') : raw('<b class="label label-default">学员</b>') %></td>
+          <td><%= user.name %></td>
+          <td><%= user.true_name %></td>
+          <td><%= user.gender ? '男' : '女' %></td>
+          <td><%= user.class_name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.mobile %></td>
+          <% if admin1?(@current_user) %>
+          <td><%= link_to '详情', '#', class: 'btn btn-default btn-xs', onclick: "$('#user_"+user.id.to_s+"_details').modal();" %></td>
+          <td><%= link_to '删除', user, method: :delete, data: { confirm: '确定?' }, class:'btn btn-default btn-xs' %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<% for user in @users %>
+<div class="modal fade" id="user_<%= user.id -%>_details" tabindex="-1" role="dialog" aria-labelledby="UserDetails" aria-hidden="true">
+<%= form_for user, remote:true, html: {class: 'form-signin', role: 'form', autocomplete:'off', spellcheck:'false'} do |f| %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="User<%= user.id -%>DetailsPage">用户信息：<%= user.name %></h4>
+      </div>
+      <div class="modal-body ">
+        <div id="error_msg_<%= user.id -%>" class="input-form container"></div>
+        <div class="input-form container">
+          <% class_up     = 'form-control form-up' %>
+          <% class_middle = 'form-control form-middle' %>
+          <% class_down   = 'form-control form-down' %>
+          <%= f.text_field      :name,                  class: class_up,     placeholder:'用户名'      %>
+          <%= f.email_field     :email,                 class: class_middle, placeholder:'电子邮件'    %>
+          <%= f.text_field      :true_name,             class: class_middle, placeholder:'姓名'        %>
+          <%= f.select(:gender, [['男',true],['女',false]], {prompt: '请选择性别'}, class: class_middle ) %>
+          <%= f.select(:administration, [['教员','1'],['指导','2'],['学员','3']], {prompt: '请选择组别'}, class: class_middle ) %>
+          <%= f.text_field      :class_name,            class: class_middle, placeholder:'班级'        %>
+          <%= f.text_field      :mobile,                class: class_middle, placeholder:'手机'        %>
+          <%= f.text_field      :qq,                    class: class_middle, placeholder:'QQ号,可选'   %>
+          <%= f.text_field      :renren,                class: class_down,   placeholder:'人人ID,可选' %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit '确定', class: 'btn btn-success' %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+<% end %>

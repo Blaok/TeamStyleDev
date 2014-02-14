@@ -1,0 +1,36 @@
+<div class="jumbotron">
+  <h1>欢迎<%= @current_user ? '你 '+@current_user.true_name : '加入' %></h1>
+  <h2>队式十六开发培训</h2>
+  <p class="lead">学习实用开发知识，锻炼实际开发技能，进入队式开发组，<s>当上总组长，出任CEO，迎娶白富美，走向人生巅峰</s>，想想还真有点儿小激动呢！</p>
+  <p>
+    <% if not @current_user %>
+      <a class="btn btn-success" data-toggle="modal" data-target="#signup">注册</a>
+      或者
+      <a class="btn btn-primary" data-toggle="modal" data-target="#signin">登录</a>
+    <% end %>
+  </p>
+</div>
+
+<div class="row marketing">
+  <div class="col-lg-6">
+    <h4><a href="/courses">课程列表</a></h4>
+    <p>所有的课程列表。学员不能修改</p>
+
+    <h4><a href="/assignments">作业列表</a></h4>
+    <p>所有的作业列表。大家努力</p>
+
+    <h4><a href="/course/files">课件列表</a></h4>
+    <p>所有课程的课件。欢迎下载</p>
+  </div>
+
+  <div class="col-lg-6">
+    <h4>学习知识</h4>
+    <p>师傅领进门，修行在个人</p>
+
+    <h4>锻练技能</h4>
+    <p>所谓学以致用</p>
+
+    <h4>参与开发</h4>
+    <p>加入队式开发组，成为队式十六的主人</p>
+  </div>
+</div>

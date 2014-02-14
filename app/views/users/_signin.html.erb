@@ -1,0 +1,23 @@
+<div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="SignInPage" aria-hidden="true">
+<%= form_for :session, url: sessions_path ,remote:true, html: {class: 'form-signin', role: 'form', autocomplete:'off', spellcheck:'false'} do |f| %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="SignInPage">用户登录</h4>
+      </div>
+      <div class="modal-body">
+        <div id="login_error_msg" class="input-form container"></div>
+        <div class="input-form container">
+          <%= f.text_field     :name,     class:'form-control form-up',   placeholder:'用户名/电子邮件' %>
+          <%= f.password_field :password, class:'form-control form-down', placeholder:'密码' %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit '登录', class: 'btn btn-primary' %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>

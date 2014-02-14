@@ -1,0 +1,19 @@
+$.ajaxSetup({headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')}});
+<% if @upload.errors.empty? %>
+document.getElementById("error_msg_new_upload").innerHTML='<div class="alert alert-success alert-dismissable fade in">上传成功</div>';
+setTimeout("location.href = \"/uploads/<%=@upload.id-%>\"",1000);
+<% else %>
+<%
+    message=[]
+    attributes=[]
+    @upload.errors.each do |attr,msg|
+      if not attributes.include?(attr)
+        message<<msg
+        attributes<<attr
+      end
+    end
+    errors=raw sanitize(simple_format(message.join('<br/>')),:tags=>(%w(br)))
+%>
+document.getElementById("error_msg_new_upload").innerHTML='<div class="alert alert-danger alert-dismissable fade in"><%= errors %></div>';
+setTimeout("document.getElementById(\"error_msg_new_upload\").innerHTML=''",2500);
+<% end %>
