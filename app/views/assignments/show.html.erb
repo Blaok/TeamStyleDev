@@ -12,7 +12,7 @@
   percent = (now-start)*100/(stop-start)
 
 %>
-    <p>请在<code><%= start.localtime.to_s(:db) %></code>至<code><%= stop.localtime.to_s(:db) %></code>之间<%= (percent <= 100 and percent >= 0) ? (link_to '提交作业', '', onclick: raw("$('#new_upload').modal();document.getElementById('NewUpload').innerHTML='提交"+@assignment.name+"的作业';document.getElementById('upload_assignment_id').value="+@assignment.id.to_s+";"), remote: true) : '提交作业' %>。服务器时间是<code><%= Time.now.localtime.to_s(:db) %></code>。</p>
+    <p>请在<code><%= start.localtime.to_s(:db) %></code>至<code><%= stop.localtime.to_s(:db) %></code>之间<%= (percent <= 100 and percent >= 0) ? (link_to '提交作业', '', class: 'btn btn-default btn-xs' ,onclick: raw("$('#new_upload').modal();document.getElementById('NewUpload').innerHTML='提交"+@assignment.name+"的作业';document.getElementById('upload_assignment_id').value="+@assignment.id.to_s+";"), remote: true) : '提交作业' %>。服务器时间是<code><%= Time.now.localtime.to_s(:db) %></code>。</p>
     <% if percent <= 100 and percent >= 0 %>
     <div class="progress progress-striped active">
       <div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="<%=percent-%>" aria-valuemin="0" aria-valuemax="100" style="width: <%=percent-%>%">

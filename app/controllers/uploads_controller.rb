@@ -130,7 +130,7 @@ class UploadsController < ApplicationController
       end
       FileUtils.cp("../../#{upload.path}","#{tmp_dir}#{user}/#{name}")
     end
-    system "7z a #{zip_file} ."
+    system "7za a #{zip_file} ."
     FileUtils.rm_r(tmp_dir)
     params[:filename] ? (send_file zip_file, filename: params[:filename]+'.7z') : (send_file zip_file)
     #system "rm #{zip_file}"
