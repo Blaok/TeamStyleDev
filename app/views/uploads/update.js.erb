@@ -1,20 +1,12 @@
 $.ajaxSetup({headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content')}});
 <% if @upload.errors.empty? %>
   <% if flash[:alert] %>
-  document.getElementById("error_msg_<%= @upload.id -%>").innerHTML='\
-<div class="alert alert-danger alert-dismissable fade in">\
-  <%= flash[:alert] -%>\
-</div>\
-';
+  document.getElementById("error_msg_edit_upload_<%= @upload.id -%>").innerHTML='<div class="alert alert-danger alert-dismissable fade in"><%= flash[:alert] -%></div>';
   <% else %>
-  document.getElementById("error_msg_<%= @upload.id -%>").innerHTML='\
-<div class="alert alert-success alert-dismissable fade in">\
-  <%= flash[:notice] -%>\
-</div>\
-';
+  document.getElementById("error_msg_edit_upload_<%= @upload.id -%>").innerHTML='<div class="alert alert-success alert-dismissable fade in"><%= flash[:notice] -%></div>';
   <% end %>
   <% flash[:alert]=nil; flash[:notice]=nil %>
-  setTimeout("document.getElementById(\"error_msg_<%= @upload.id -%>\").innerHTML='';location.href='';",1500);
+  setTimeout("document.getElementById('error_msg_edit_upload_<%= @upload.id -%>').innerHTML='';location.href='';",1500);
 <% else %>
 <%
     message=[]
@@ -27,10 +19,6 @@ $.ajaxSetup({headers:{'X-CSRF-Token':$('meta[name="csrf-token"]').attr('content'
     end
     errors=raw sanitize(simple_format(message.join('<br/>')),:tags=>(%w(br)))
 %>
-  document.getElementById("error_msg_<%= @upload.id -%>").innerHTML='\
-<div class="alert alert-danger alert-dismissable fade in">\
-  <%= errors %>\
-</div>\
-';
-  setTimeout("document.getElementById(\"error_msg_<%= @upload.id -%>\").innerHTML=''",2500);
+  document.getElementById("error_msg_edit_upload_<%= @upload.id -%>").innerHTML='<div class="alert alert-danger alert-dismissable fade in"><%= errors %></div>';
+  setTimeout("document.getElementById('error_msg_edit_upload_<%= @upload.id -%>').innerHTML=''",2500);
 <% end %>

@@ -2,7 +2,7 @@ class AssignmentsController < ApplicationController
   before_action :set_assignment, only: [:show, :edit, :update, :destroy]
   skip_before_filter :authorize, only: [:index, :show]
   skip_before_filter :teacher, only: [:index, :show]
-  before_action {@active = 1}
+  before_action {@active = (@current_user==nil || 1==@current_user.admin || 2==@current_user.admin ) ? 1 : 2}
 
   def index
     @assignments = Assignment.all

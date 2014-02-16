@@ -4,7 +4,14 @@
   <p class="lead"><%= @course.information %></p>
 </div>
 <div class="panel panel-default">
-  <div class="panel-heading">课件</div>
+<%
+  uploads = ''
+  for upload in @course.uploads
+    uploads += upload.id.to_s+','
+  end
+  uploads = uploads.chop
+%>
+  <div class="panel-heading">课件<%= @course.uploads.empty? || (link_to '打包下载', "/download?uploads=#{uploads}&filename=#{@course.name.gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜')}", method: 'post', class: 'btn btn-default btn-xs pull-right') %></div>
   <div class="panel-body">
 <% if @course.uploads.empty? %>
     课件资料尚未上传
@@ -17,6 +24,10 @@
     <th>文件名称</th>
     <th>文件说明</th>
     <th class="sorttable_nosort"></th>
+    <% if admin1?(@current_user) %>
+    <th class="sorttable_nosort"></th>
+    <th class="sorttable_nosort"></th>
+    <% end %>
     <th class="sorttable_nosort"></th>
   </thead>
 <%   for upload in @course.uploads %>
@@ -25,7 +36,11 @@
     <td><%= upload.name %></td>
     <td><%= upload.information %></td>
     <td><%= link_to '详情', upload, class: 'btn btn-default btn-xs' %></td>
-    <td><%= link_to '下载', "/courses/files/#{upload.id}", class: 'btn btn-info btn-xs' %></td>
+    <% if admin1?(@current_user) %>
+    <td><%= link_to '编辑', '', remote: true, onclick: raw("$('#edit_upload_"+upload.id.to_s+"').modal();"), class: 'btn btn-info btn-xs' %></td>
+    <td><%= link_to '删除', upload, method: :delete, data: { confirm: '确定?' }, class:'btn btn-danger btn-xs' %></td>
+    <% end %>
+    <td><%= link_to '下载', "/courses/files/#{upload.id}", class: 'btn btn-success btn-xs' %></td>
   </tr>
 <%   end %>
 </table>
@@ -33,6 +48,14 @@
 <% end %>
   </div>
 </div>
+
+<% for upload in @course.uploads %>
+<%   @upload = upload %>
+<%   @course_id = @course.id %>
+<%   @assignment_id = nil %>
+<%=  render 'uploads/edit' %>
+<% end %>
+
 <div class="panel panel-default">
   <div class="panel-heading">作业</div>
   <div class="panel-body">
@@ -47,6 +70,10 @@
     <th>名称</th>
     <th>开始时间</th>
     <th>截止时间</th>
+<% if admin1?(@current_user) %>
+    <th class="sorttable_nosort"></th>
+<% end %>
+    <th class="sorttable_nosort"></th>
     <th class="sorttable_nosort"></th>
   </thead>
 <%   for assignment in @course.assignments %>
@@ -56,6 +83,16 @@
     <td><%= assignment.startat.localtime.to_s(:db) %></td>
     <td><%= assignment.deadline.localtime.to_s(:db) %></td>
     <td><%= link_to '详情', assignment, class: 'btn btn-default btn-xs' %></td>
+    <% if admin1?(@current_user) %>
+    <td><%= link_to '编辑', '', remote: true, onclick: raw("$('#assignment_"+assignment.id.to_s+"_details').modal();"), class: 'btn btn-info btn-xs' %></td>
+    <% end %>
+<%
+  disabled = false
+  now = Time.now
+  assignment.startat > now && (disabled = true)
+  assignment.deadline < now && (disabled = true)
+%>
+    <td><%= link_to '交作业', '', class: 'btn btn-success btn-xs', onclick: "$('#new_upload').modal();document.getElementById('NewUpload').innerHTML='提交"+assignment.name+"的作业';document.getElementById('upload_assignment_id').value="+assignment.id.to_s+";", remote: true, disabled: disabled %></td>
   </tr>
 <%   end %>
 </table>
@@ -64,3 +101,61 @@
   </div>
 </div>
 
+<%= render 'uploads/new_assignment' %>
+
+<% if @current_user && admin1?(@current_user) %>
+<%   for assignment in @course.assignments  %>
+<% datetimepicker1 = 'datetimepicker1_for_assignment_'+assignment.id.to_s %>
+<% datetimepicker2 = 'datetimepicker2_for_assignment_'+assignment.id.to_s %>
+<script type="text/javascript">
+$(function () {
+    $('#<%= datetimepicker1 -%>').datetimepicker({
+      useSeconds: true,
+      pick12HourFormat: false,
+      format: 'YYYY-MM-DD HH:mm:ss'
+    });
+});
+$(function () {
+    $('#<%= datetimepicker2 -%>').datetimepicker({
+      useSeconds: true, 
+      pick12HourFormat: false,
+      format: 'YYYY-MM-DD HH:mm:ss'
+    });
+});
+</script>
+<div class="modal fade" id="assignment_<%= assignment.id -%>_details" tabindex="-1" role="dialog" aria-labelledby="assignmentDetails" aria-hidden="true">
+<%= form_for assignment, remote:true, html: {class: 'form-signin', role: 'form', autocomplete:'off', spellcheck:'false'} do |f| %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="assignment<%= assignment.id -%>DetailsPage">课程信息：<%= assignment.name %></h4>
+      </div>
+      <div class="modal-body ">
+        <div id="error_msg_<%= assignment.id -%>"></div>
+        <div>
+          <%= f.text_field :name,        class: 'form-control form-up',     placeholder: '课程名称' %>
+          <%= f.text_area  :information, class: 'form-control form-middle',   placeholder: '课程简介' %>
+          <div class="input-daterange input-group">
+            <div class='input-group date form-middle' id='<%= datetimepicker1 -%>' style="width:100%">
+              <%= f.text_field :startat, class: 'form-control form-left-down', value: assignment.startat.localtime.to_s(:db) %>
+              <span class="input-group-addon form-left-down"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+            <span class="input-group-addon form-center">至</span>
+            <div class='input-group date' id='<%= datetimepicker2 -%>' style="width:100%">
+              <%= f.text_field :deadline, class: 'form-control form-right-down',value: assignment.deadline.localtime.to_s(:db) %>
+              <span class="input-group-addon form-right-down"><span class="glyphicon glyphicon-calendar"></span></span> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit '确定', class: 'btn btn-info' %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+<%   end %>
+<% end %>

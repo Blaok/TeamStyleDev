@@ -1,0 +1,26 @@
+<div class="modal fade" id="new_upload" tabindex="-1" role="dialog" aria-labelledby="NewUpload" aria-hidden="true">
+<%= form_for @upload=Upload.new, remote:true, :authenticity_token => true, html: {class: 'form-signin', role: 'form', autocomplete:'off', spellcheck:'false'} do |f| %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="NewUpload"></h4>
+      </div>
+      <div class="modal-body ">
+        <div id="error_msg_new_upload"></div>
+        <div>
+          <%= f.hidden_field :assignment_id %>
+          <%= f.text_field :name,        class: 'form-control form-up',     placeholder: '附件名称' %>
+          <%= f.text_field :category,    class: 'form-control form-middle', placeholder: '附件类别', value: '作业' %>
+          <%= f.text_area  :information, class: 'form-control form-middle', placeholder: '附件说明' %>
+          <%= f.file_field :file,        class: 'form-control form-down' %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit '确定', class: 'btn btn-success' %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>

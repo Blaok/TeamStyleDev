@@ -12,7 +12,7 @@
   percent = (now-start)*100/(stop-start)
 
 %>
-    <p>请在<code><%= start.localtime.to_s(:db) %></code>至<code><%= stop.localtime.to_s(:db) %></code>之间提交作业。服务器时间是<code><%= Time.now.localtime.to_s(:db) %></code>。</p>
+    <p>请在<code><%= start.localtime.to_s(:db) %></code>至<code><%= stop.localtime.to_s(:db) %></code>之间<%= (percent <= 100 and percent >= 0) ? (link_to '提交作业', '', onclick: raw("$('#new_upload').modal();document.getElementById('NewUpload').innerHTML='提交"+@assignment.name+"的作业';document.getElementById('upload_assignment_id').value="+@assignment.id.to_s+";"), remote: true) : '提交作业' %>。服务器时间是<code><%= Time.now.localtime.to_s(:db) %></code>。</p>
     <% if percent <= 100 and percent >= 0 %>
     <div class="progress progress-striped active">
       <div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="<%=percent-%>" aria-valuemin="0" aria-valuemax="100" style="width: <%=percent-%>%">
@@ -38,3 +38,45 @@
   </div>
 </div>
 
+<% if admin1?(@current_user) and !@assignment.uploads.empty? %>
+<%
+  uploads = ''
+  for upload in @assignment.uploads
+    uploads += upload.id.to_s+','
+  end
+  uploads = uploads.chop
+%>
+<div class="panel panel-default">
+  <div class="panel-heading">已提交的作业<%= link_to '打包下载', "/download?uploads=#{uploads}&filename=#{@assignment.name.gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜')}", method: 'post', class: 'btn btn-default btn-xs pull-right' %></div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-condensed sortable">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>名称</th>
+            <th>说明</th>
+            <th>作者</th>
+            <th class="sorttable_nosort"></th>
+          </tr>
+        </thead>
+        <tbody>
+<% i=0 %>
+<% for upload in @assignment.uploads %>
+<% user=User.find_by_id(upload.user_id) %>
+          <tr>
+            <td><span class="badge"><%= i=i+1 -%></td>
+            <td><%= upload.name %></td>
+            <td><%= upload.information %></td>
+            <td><%= user && user.name %></td>
+            <td><%= link_to '下载', "/assignments/files/#{upload.id}", class: 'btn btn-success btn-xs' %></td>
+          </tr>
+<% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<%= render 'uploads/new_assignment' %>

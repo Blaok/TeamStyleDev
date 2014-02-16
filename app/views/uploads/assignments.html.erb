@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h4>附件列表</h4>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped table-hover table-condensed sortable" id="assignments">
+    <thead>
+      <tr>
+        <th>课程</th>
+        <th>名称</th>
+        <th class="sorttable_nosort"></th>
+        <% if @current_user && (admin1?(@current_user)) %>
+        <th class="sorttable_nosort"></th>
+        <th class="sorttable_nosort"></th>
+        <th class="sorttable_nosort"></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @uploads.each do |upload| %>
+        <tr>
+          <td><%= Assignment.find_by_id(upload.assignment_id).name %></td>
+          <td><%= upload.name %></td>
+          <td><%= link_to '详情', upload, class: 'btn btn-default btn-xs' %></td>
+        <% if @current_user && (admin1?(@current_user)) %>
+          <td><%= link_to '编辑', '', class: 'btn btn-info btn-xs', onclick: "$('#upload_"+upload.id.to_s+"_details').modal();", remote: true %></td>
+          <td><%= link_to '删除', upload, method: :delete, data: { confirm: '确定?' }, class:'btn btn-danger btn-xs' %></td>
+          <td><%= link_to '下载', "/assignments/files/#{upload.id}", class: 'btn btn-success btn-xs' %></td>
+        <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

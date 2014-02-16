@@ -1,6 +1,7 @@
 class UploadsController < ApplicationController
   before_action :set_upload, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :authorize, only: [:index, :show]
+  skip_before_filter :authorize, only: [:index, :courses, :course ]
+  skip_before_filter :teacher
   before_action {@active = 1}
 
   def index
@@ -9,12 +10,10 @@ class UploadsController < ApplicationController
 
   def courses
     @uploads = Upload.all - Upload.find_all_by_course_id(nil)
-    render action: 'index'
   end
 
   def assignments
     @uploads = Upload.all - Upload.find_all_by_assignment_id(nil)
-    render action: 'index'
   end
 
   def show
@@ -27,7 +26,7 @@ class UploadsController < ApplicationController
   def course
     @upload = Upload.find_by_id(params[:id])
     if @upload.course_id
-      send_file "#{Rails.root}/#{@upload.path}", filename: (File.extname(@upload.name).empty? ? @upload.name+File.extname(@upload.path) : @upload.name)
+      send_file "#{Rails.root}/#{@upload.path}", filename: (File.extname(@upload.name).empty? ? @upload.name.gsub('\\','＼').gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜')+File.extname(@upload.path) : @upload.name.gsub('\\','＼').gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜'))
     else
       render :html, status: 404
     end
@@ -36,54 +35,67 @@ class UploadsController < ApplicationController
   def assignment
     @upload = Upload.find_by_id(params[:id])
     if @upload.assignment_id
-      send_file "#{Rails.root}/#{@upload.path}", filename: (File.extname(@upload.name).empty? ? @upload.name+File.extname(@upload.path) : @upload.name)
+      send_file "#{Rails.root}/#{@upload.path}", filename: (File.extname(@upload.name).empty? ? @upload.name.gsub('\\','＼').gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜')+File.extname(@upload.path) : @upload.name.gsub('\\','＼').gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜'))
     else
       render :html, status: 404
     end
   end
 
   def create
-    unless 0==@current_user.admin or 1==@current_user.admin 
+    unless 0==@current_user.admin or 1==@current_user.admin or params[:upload][:assignment_id]
       flash[:alert] = '未授权'
       render status: 403
     else
       @upload = Upload.new(upload_params)
+      @upload.user_id = current_user.id
       unless @upload.name
+        flash[:msg] = @upload.name
+
         @upload.errors.add(:name, '附件名称不能为空')
         respond_to do |format|
           format.js
-          format.html action: 'course#index'
         end
       else
         file = params[:upload][:file]
         file && ((@upload.path = Upload.upload_file('upload',Time.now.to_i.to_s+'_'+file.original_filename,file)))
+        
+        saved = @upload.save
+        flash[:msg] = (saved ? '上传成功' : '上传失败：附件名称不能为空')
+        File.exists?(@upload.path.to_s) and File.delete(@upload.path.to_s) unless saved
 
-        unless saved = @upload.save
-          File.exists?(@upload.path.to_s) and File.delete(@upload.path.to_s)
-          render action: 'course#index' #{ redirect_to '', msg: (saved ? '上传成功' : '上传失败') }
-          
-        else
-          respond_to do |format|
-            format.js
-            format.html action: 'course#index' #{ redirect_to '', msg: (saved ? '上传成功' : '上传失败') }
-          end
+        respond_to do |format|
+          format.js
+          format.html { redirect_to :back  }
         end
       end
     end
   end
 
   def update
-    unless 0==@current_user.admin or 1==@current_user.admin 
+    unless 0==@current_user.admin or 1==@current_user.admin
       flash[:alert] = '未授权'
       render status: 403
     else
-      if @upload.update(upload_params)
-        flash[:notice] = '修改保存成功'
+      file = params[:upload][:file]
+      unless file
+        @upload.errors.add(:path, '附件不能为空')
+        params[:upload][:name].blank? && @upload.errors.add(:name, '附件名称不能为空')
+        respond_to do |format|
+          format.js
+        end
       else
-        flash[:notice] = '没有任何修改'
-      end
-      respond_to do |format|
-        format.js
+        old_path = @upload.path
+        @upload.path = Upload.upload_file('upload',Time.now.to_i.to_s+'_'+file.original_filename,file)
+        
+        saved = @upload.update(upload_params)
+        flash[:msg] = (saved ? '上传成功' : '上传失败：附件名称不能为空')
+        File.exists?(@upload.path.to_s) and File.delete(@upload.path.to_s) unless saved
+        File.exists?(old_path.to_s) and File.delete(old_path.to_s)
+
+        respond_to do |format|
+          format.js
+          format.html { redirect_to :back  }
+        end
       end
     end
   end
@@ -99,6 +111,29 @@ class UploadsController < ApplicationController
         format.html { redirect_to uploads_url }
       end
     end
+  end
+
+  def zip
+    uploads = params[:uploads].split(',')
+    tmp_dir = "#{Rails.root}/tmp/#{Time.now.to_i.to_s}"
+    Dir.mkdir(tmp_dir)
+    Dir.chdir(tmp_dir)
+    zip_file = "#{tmp_dir}.7z"
+    for upload in uploads
+      upload = Upload.find_by_id(upload)
+      timestrap = File.basename(upload.path).split('_')[0]
+      name = "#{timestrap}_"+(File.extname(upload.name).empty? ? upload.name.gsub('\\','＼').gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜')+File.extname(upload.path) : upload.name.gsub('\\','＼').gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜'))
+      user = User.find_by_id(upload.user_id)
+      if user
+        user = '/'+user.name.gsub('\\','＼').gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜')
+        Dir.mkdir(tmp_dir+user)
+      end
+      FileUtils.cp("../../#{upload.path}","#{tmp_dir}#{user}/#{name}")
+    end
+    system "7z a #{zip_file} ."
+    FileUtils.rm_r(tmp_dir)
+    params[:filename] ? (send_file zip_file, filename: params[:filename]+'.7z') : (send_file zip_file)
+    #system "rm #{zip_file}"
   end
 
   private

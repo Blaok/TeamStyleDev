@@ -29,6 +29,13 @@
           <td><%= link_to '编辑', '', class: 'btn btn-info btn-xs', onclick: "$('#assignment_"+assignment.id.to_s+"_details').modal();", remote: true %></td>
           <td><%= link_to '删除', assignment, method: :delete, data: { confirm: '确定?' }, class:'btn btn-danger btn-xs' %></td>
         <% end %>
+        <%
+          disabled = false
+          now = Time.now
+          assignment.startat > now && (disabled = true)
+          assignment.deadline < now && (disabled = true)
+        %>
+          <td><%= link_to '交作业', '', class: 'btn btn-success btn-xs', onclick: "$('#new_upload').modal();document.getElementById('NewUpload').innerHTML='提交"+assignment.name+"的作业';document.getElementById('upload_assignment_id').value="+assignment.id.to_s+";", remote: true, disabled: disabled %></td>
         </tr>
       <% end %>
     </tbody>
@@ -91,3 +98,5 @@ $(function () {
 </div>
 <%   end %>
 <% end %>
+
+<%= render 'uploads/new_assignment' %>

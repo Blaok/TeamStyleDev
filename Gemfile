@@ -4,7 +4,7 @@ source 'http://ruby.taobao.org/'
 #gem 'date_validator'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
-gem 'jquery.fileupload-rails'
+#gem 'jquery-fileupload-rails'
 #gem 'bootstrap-datepicker-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

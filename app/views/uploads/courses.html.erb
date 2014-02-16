@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h4>附件列表</h4>
+  <h4>课件列表</h4>
 </div>
 <div class="table-responsive">
   <table class="table table-striped table-hover table-condensed sortable" id="userssss">
@@ -12,6 +12,7 @@
         <th class="sorttable_nosort"></th>
         <th class="sorttable_nosort"></th>
         <% end %>
+        <th class="sorttable_nosort"></th>
       </tr>
     </thead>
 
@@ -22,11 +23,17 @@
           <td><%= upload.name %></td>
           <td><%= link_to '详情', upload, class: 'btn btn-default btn-xs' %></td>
         <% if @current_user && (admin1?(@current_user)) %>
-          <td><%= link_to '编辑', '', class: 'btn btn-info btn-xs', onclick: "$('#upload_"+upload.id.to_s+"_details').modal();", remote: true %></td>
+          <td><%= link_to '编辑', '', class: 'btn btn-info btn-xs', onclick: raw("$('#edit_upload_"+upload.id.to_s+"').modal();"), remote: true %></td>
           <td><%= link_to '删除', upload, method: :delete, data: { confirm: '确定?' }, class:'btn btn-danger btn-xs' %></td>
         <% end %>
+          <td><%= link_to '下载', "/courses/files/#{upload.id}", class: 'btn btn-success btn-xs' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+
+<% for upload in @uploads %>
+<%   @upload = upload %>
+<%=  render 'uploads/edit' %>
+<% end %>

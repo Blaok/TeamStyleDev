@@ -1,12 +1,16 @@
 <div class="header">
-  <ul class="nav nav-pills pull-right">
+  <ul class="nav nav-pills pull-right nav-fixed-top">
     <li <%=(@active==0) ? raw('class="active"') : ''-%>><a href="/">主页</a></li>
     <li <%=(@active==1) ? raw('class="active"') : ''-%>><a href="/courses">课程</a></li>
-    <% if @current_user %>
+<% if @current_user %>
+<%   if admin1?(@current_user) %>
       <li <%=(@active==2) ? raw('class="active"') : ''-%>><a href="/admin">管理</a></li>
-    <% else %>
+<%   else %>
+      <li <%=(@active==2) ? raw('class="active"') : ''-%>><a href="/assignments">作业</a></li>
+<%   end %>
+<% else %>
       <li><a data-toggle="modal" data-target="#signup">注册</a></li>
-    <% end %>
+<% end %>
   </ul>
   <h3 class="text-muted">队式培训</h3>
 </div>

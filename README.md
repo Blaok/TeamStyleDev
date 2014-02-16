@@ -27,6 +27,7 @@ model:upload
 - category:string **文件类别**
 - course_id:integer **文件所属课程**
 - assignment_id:integer **文件所属作业**
+- user_id:integer **上传者**
 
 model:session
 -
