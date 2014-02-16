@@ -1,4 +1,4 @@
-class UploadsController < ApplicationController
+﻿class UploadsController < ApplicationController
   before_action :set_upload, only: [:show, :edit, :update, :destroy]
   skip_before_filter :authorize, only: [:index, :courses, :course ]
   skip_before_filter :teacher

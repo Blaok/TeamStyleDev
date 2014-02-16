@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+﻿class HomeController < ApplicationController
   skip_before_filter :authorize, only: [:index]
   skip_before_filter :teacher, only: [:index]
 

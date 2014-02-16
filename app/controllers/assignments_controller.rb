@@ -1,4 +1,4 @@
-class AssignmentsController < ApplicationController
+﻿class AssignmentsController < ApplicationController
   before_action :set_assignment, only: [:show, :edit, :update, :destroy]
   skip_before_filter :authorize, only: [:index, :show]
   skip_before_filter :teacher, only: [:index, :show]

@@ -1,4 +1,4 @@
-class CoursesController < ApplicationController
+﻿class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   skip_before_filter :authorize, only: [:index, :show]
   skip_before_filter :teacher, only: [:index, :show]
