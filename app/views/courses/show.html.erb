@@ -11,7 +11,7 @@
   end
   uploads = uploads.chop
 %>
-  <div class="panel-heading">课件<%= @course.uploads.empty? || (link_to '打包下载', "/download?uploads=#{uploads}&filename=#{@course.name.gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜')}", method: 'post', class: 'btn btn-default btn-xs pull-right') %></div>
+  <div class="panel-heading">课件<%= @course.uploads.length>1 ? (link_to '打包下载', "/download?uploads=#{uploads}&filename=#{@course.name.gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜')}", method: 'post', class: 'btn btn-default btn-xs pull-right') : '' %></div>
   <div class="panel-body">
 <% if @course.uploads.empty? %>
     课件资料尚未上传

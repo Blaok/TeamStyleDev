@@ -47,7 +47,7 @@
   uploads = uploads.chop
 %>
 <div class="panel panel-default">
-  <div class="panel-heading">已提交的作业<%= link_to '打包下载', "/download?uploads=#{uploads}&filename=#{@assignment.name.gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜')}", method: 'post', class: 'btn btn-default btn-xs pull-right' %></div>
+  <div class="panel-heading">已提交的作业<%= @assignment.uploads.length>1 ? (link_to '打包下载', "/download?uploads=#{uploads}&filename=#{@assignment.name.gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜')}", method: 'post', class: 'btn btn-default btn-xs pull-right') : '' %></div>
   <div class="panel-body">
     <div class="table-responsive">
       <table class="table table-striped table-hover table-condensed sortable">
