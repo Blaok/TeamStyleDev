@@ -133,7 +133,7 @@
     system "7za a #{zip_file} ."
     FileUtils.rm_r(tmp_dir)
     params[:filename] ? (send_file zip_file, filename: params[:filename]+'.7z') : (send_file zip_file)
-    #system "rm #{zip_file}"
+    system "sh -c \"sleep 600s;rm #{zip_file}\"&"
   end
 
   private
