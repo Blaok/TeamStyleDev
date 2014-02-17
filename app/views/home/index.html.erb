@@ -1,7 +1,7 @@
 <div class="jumbotron">
   <h1>欢迎<%= @current_user ? '你 '+@current_user.true_name : '加入' %></h1>
   <h2>队式十六开发培训</h2>
-  <p class="lead">学习实用开发知识，锻炼实际开发技能，进入队式开发组，<s>当上总组长，出任CEO，迎娶白富美，走向人生巅峰</s>，想想还真有点儿小激动呢！</p>
+  <p class="lead">学习实用开发知识，锻炼实际开发技能，进入队式开发组，<s>当上总组长，出任CEO，迎娶白富美，走向人生巅峰，</s>想想还真有点儿小激动呢！</p>
   <p>
     <% if not @current_user %>
       <a class="btn btn-success" data-toggle="modal" data-target="#signup">注册</a>
