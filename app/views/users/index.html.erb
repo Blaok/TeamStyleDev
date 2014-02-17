@@ -59,7 +59,7 @@
           <%= f.email_field     :email,                 class: class_middle, placeholder:'电子邮件'    %>
           <%= f.text_field      :true_name,             class: class_middle, placeholder:'姓名'        %>
           <%= f.select(:gender, [['男',true],['女',false]], {prompt: '请选择性别'}, class: class_middle ) %>
-          <%= f.select(:administration, [['教员','1'],['指导','2'],['学员','3']], {prompt: '请选择组别'}, class: class_middle ) %>
+          <%= f.select(:administration, [['教员','1'],['学员','3']], {prompt: '请选择组别'}, class: class_middle ) %>
           <%= f.text_field      :class_name,            class: class_middle, placeholder:'班级'        %>
           <%= f.text_field      :mobile,                class: class_middle, placeholder:'手机'        %>
           <%= f.text_field      :qq,                    class: class_middle, placeholder:'QQ号,可选'   %>
