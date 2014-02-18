@@ -10,14 +10,16 @@
     respond_to do |format|
       if user = User.authenticate(params[:session][:name], params[:session][:password])
         remember_token = user.id.to_s+SecureRandom.urlsafe_base64
-        cookies.permanent[:remember_token] = remember_token
         session[:user_id] = user.id
-        @session = Session.new
-        @session.user_id = user.id
-        @session.remember_token = remember_token
-        if @session.save
-        else
-          flash[:error] = '登录出错'
+        if params[:session][:remember_me]=="1"
+          cookies.permanent[:remember_token] = remember_token 
+          @session = Session.new
+          @session.user_id = user.id
+          @session.remember_token = remember_token
+          if @session.save
+          else
+            flash[:error] = '登录出错'
+          end
         end
         format.js
       else
