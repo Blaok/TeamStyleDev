@@ -15,8 +15,9 @@
  
 /* Space out content a bit */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+//  padding-top: 20px;
+  padding-bottom: 10px;
+  font-family: "Microsoft YaHei", "WenQuanYi Micro Hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -25,6 +26,8 @@ body {
 .footer {
   padding-left: 15px;
   padding-right: 15px;
+  bottom: 0px;
+  max-width: 730px;
 }
 
 /* Custom page header */

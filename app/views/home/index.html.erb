@@ -1,7 +1,7 @@
 <div class="jumbotron">
   <h1>欢迎<%= @current_user ? '你 '+@current_user.true_name : '加入' %></h1>
   <h2>电子系科协福利培训</h2>
-  <p class="lead">学习实用开发知识，锻炼实际开发技能，进入队式开发组，<s>当上总组长，出任CEO，迎娶白富美，走向人生巅峰，</s>想想还真有点儿小激动呢！</p>
+  <p class="lead">学习实用知识，锻炼实际技能，<s>升职加薪，当上总经理，出任CEO，迎娶白富美，走向人生巅峰，</s>想想还真有点儿小激动呢！</p>
   <p>
     <% if not @current_user %>
       <a class="btn btn-success" data-toggle="modal" data-target="#signup">注册</a>
@@ -21,6 +21,7 @@
 
     <h4><a href="/course/files">课件列表</a></h4>
     <p>所有课程的课件。欢迎下载</p>
+    <br/>
   </div>
 
   <div class="col-lg-6">
@@ -31,6 +32,7 @@
     <p>所谓学以致用</p>
 
     <h4>参与开发</h4>
-    <p>加入队式开发组，成为队式十六的主人</p>
+    <p>加入开发组，成为队式十六的主人</p>
+    <br/>
   </div>
 </div>
