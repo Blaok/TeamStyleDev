@@ -32,11 +32,6 @@ ActiveRecord::Schema.define(version: 20140216052132) do
     t.integer  "user_id"
   end
 
-  create_table "courses_users", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "sessions", force: true do |t|
     t.integer  "user_id"
     t.string   "remember_token"
