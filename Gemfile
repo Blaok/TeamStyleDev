@@ -4,6 +4,8 @@ source 'http://ruby.taobao.org/'
 #gem 'date_validator'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
+gem 'ya2yaml'
+gem 'nokogiri'
 #gem 'jquery-fileupload-rails'
 #gem 'bootstrap-datepicker-rails'
 

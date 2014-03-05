@@ -1,0 +1,11 @@
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+  document.getElementById("annoucements_error_msg").innerHTML='\
+<div class="alert alert-success alert-dismissable fade in">\
+  保存成功\
+</div>\
+';
+  setTimeout("location.href = \"/\"",1500);

@@ -14,6 +14,7 @@ TeamStyleDev::Application.routes.draw do
   match '/assignment/files', to: 'uploads#assignments', via: 'get'
   match '/logout', to: 'sessions#destroy', via: 'delete'
   match '/download', to: 'uploads#zip', via: 'post'
+  match '/update_annoucements', to: 'home#update_annoucements', via: 'post'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
