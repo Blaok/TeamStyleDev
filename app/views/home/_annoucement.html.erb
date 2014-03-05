@@ -7,13 +7,16 @@
       </div>
       <div class="modal-body">
         <div id="annoucements_error_msg"></div>
-        <% require 'nokogiri' %>
-        <%= raw Nokogiri::HTML::fragment(sanitize(simple_format(@annoucements), :tags=>(%w(br p blockquote strong code h1 h2 h3 h4 h5 h6 a img)))).to_xml%>
-        <% if @current_user && (admin1?(@current_user)) %>
-          <br/><p>如下标签可以使用：<code><%="<blockquote>"%></code>,<code><%='<p>'%></code>,<code><%='<strong>'%></code>,<code><%='<code>'%></code>,<code><%='<h1>'%></code>~<code><%='<h6>'%></code>,<code><%='<a>'%></code>,<code><%='<img>'%></code>.</p>
-        <%= form_tag '/update_annoucements' ,remote:true %>
-        <%= text_area_tag 'annoucement', @annoucements, class:"form-control", style:"height: "+((@annoucements.lines.count()+3)*20).to_s+'px' %>
-        <% end %>
+<% require 'nokogiri' %>
+        <%= raw Nokogiri::HTML::fragment(sanitize(simple_format(@annoucements), :tags=>(%w(br p blockquote em strong code h1 h2 h3 h4 h5 h6 a img)))).to_xml%>
+<% if @current_user && (admin1?(@current_user)) %>
+        <table class="table"><tbody><tr><td></td></tr></tbody></table>
+        <div>
+          <p>如下标签可以使用：<%='<blockquote>,<p>,<em>,<strong>,<code>,<h1>~<h6>,<a>,<img>'%>.</p>
+          <%= form_tag '/update_annoucements' ,remote:true %>
+          <%= text_area_tag 'annoucement', @annoucements, class:"form-control", style:"height: "+((@annoucements.lines.count()+3)*20).to_s+'px' %>
+        </div>
+<% end %>
       </div>
       <div class="modal-footer">
         <%= submit_tag '提交', class: "btn btn-success" if @current_user && admin1?(@current_user)%>
