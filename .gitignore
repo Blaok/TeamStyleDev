@@ -15,7 +15,7 @@
 /log/*.log
 /tmp/*
 
-/config/annoucements.yaml
+/config/annoucements.yml
 
 /public/*
 /upload/*
