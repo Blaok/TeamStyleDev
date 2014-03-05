@@ -11,16 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304145129) do
-
-  create_table "announcements", force: true do |t|
-    t.integer  "sort_key"
-    t.string   "content"
-    t.datetime "startat"
-    t.datetime "endat"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20140216052132) do
 
   create_table "assignments", force: true do |t|
     t.string   "name"
@@ -39,11 +30,6 @@ ActiveRecord::Schema.define(version: 20140304145129) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-  end
-
-  create_table "courses_users", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "sessions", force: true do |t|

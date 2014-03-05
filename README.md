@@ -49,10 +49,3 @@ model:assignment
 - startat:datetime **开放日期**
 - deadline:datetime **截止日期**
 
-model:annoucement
--
-- sort_key:integer **排序**
-- content:string **简短的公告内容**
-- startat:datetime **公告发布日期**
-- endat:datetime **公告结束日期**
-
