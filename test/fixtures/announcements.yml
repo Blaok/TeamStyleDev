@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sort_key: 1
+  content: MyString
+  startat: 2014-03-04 22:51:29
+  endat: 2014-03-04 22:51:29
+
+two:
+  sort_key: 1
+  content: MyString
+  startat: 2014-03-04 22:51:29
+  endat: 2014-03-04 22:51:29

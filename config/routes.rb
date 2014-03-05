@@ -1,4 +1,6 @@
 TeamStyleDev::Application.routes.draw do
+  resources :announcements
+
   resources :users
   resources :courses
   resources :assignments
