@@ -16,6 +16,7 @@
 /tmp/*
 
 /config/annoucements.yml
+config/annoucements.yml
 
 /public/*
 /upload/*
