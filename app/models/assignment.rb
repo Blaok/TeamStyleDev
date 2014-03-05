@@ -1,5 +1,5 @@
 ﻿class Assignment < ActiveRecord::Base
-  has_many :uploads
+  has_many :uploads, :dependent => :destroy
   belongs_to :course
 
   validates :name, 

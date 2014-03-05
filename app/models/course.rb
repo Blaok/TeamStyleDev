@@ -1,7 +1,6 @@
 ﻿class Course < ActiveRecord::Base
-
-  has_many :assignments
-  has_many :uploads
+  has_many :assignments, :dependent => :destroy
+  has_many :uploads, :dependent => :destroy
   belongs_to :user
 
   validates :name, 

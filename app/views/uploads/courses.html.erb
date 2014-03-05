@@ -19,7 +19,7 @@
     <tbody>
       <% @uploads.each do |upload| %>
         <tr>
-          <td><%= Course.find_by_id(upload.course_id).name %></td>
+          <td><%= (course=Course.find_by_id(upload.course_id)) && course.name %></td>
           <td><%= upload.name %></td>
           <td><%= link_to '详情', upload, class: 'btn btn-default btn-xs' %></td>
         <% if @current_user && (admin1?(@current_user)) %>
