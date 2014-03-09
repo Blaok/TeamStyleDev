@@ -126,7 +126,7 @@
       user = User.find_by_id(upload.user_id)
       if user
         user = '/'+user.name.gsub('\\','＼').gsub('/','／').gsub(':','：').gsub('*','＊',).gsub('?','？').gsub('"','＂').gsub('<','＜').gsub('>','＞').gsub('|','｜')
-        Dir.exists?(tmp_dir+user) || Dir.mkdir(tmp_dir+user)
+        Dir.mkdir(tmp_dir+user)
       end
       FileUtils.cp("../../#{upload.path}","#{tmp_dir}#{user}/#{name}")
     end
