@@ -24,7 +24,7 @@
     <th>文件名称</th>
     <th>文件说明</th>
     <th class="sorttable_nosort"></th>
-    <% if admin1?(@current_user) %>
+    <% if @current_user && admin1?(@current_user) %>
     <th class="sorttable_nosort"></th>
     <th class="sorttable_nosort"></th>
     <% end %>
@@ -36,7 +36,7 @@
     <td><%= upload.name %></td>
     <td><%= upload.information %></td>
     <td><%= link_to '详情', upload, class: 'btn btn-default btn-xs' %></td>
-    <% if admin1?(@current_user) %>
+    <% if @current_user && admin1?(@current_user) %>
     <td><%= link_to '编辑', '', remote: true, onclick: raw("$('#edit_upload_"+upload.id.to_s+"').modal();"), class: 'btn btn-info btn-xs' %></td>
     <td><%= link_to '删除', upload, method: :delete, data: { confirm: '确定?' }, class:'btn btn-danger btn-xs' %></td>
     <% end %>
