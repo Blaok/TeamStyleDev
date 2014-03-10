@@ -1,5 +1,5 @@
  <% require 'nokogiri' %>
-<div class="alert alert-info" onclick="$('#annoucement').modal()"><p style="width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><strong>网站公告</strong>：<%= raw Nokogiri::HTML::fragment(sanitize(simple_format(@annoucements), :tags=>(%w(strong code a em)))).to_xml %></p></div>
+<div class="alert alert-info" onclick="$('#annoucement').modal()"><p style="width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><strong>网站公告</strong>：<%= raw Nokogiri::HTML::fragment(sanitize(simple_format(@annoucements, {}, sanitize: false), tags: %w(strong code a em), attributes: %w(href target))).to_xml %></p></div>
 <div class="jumbotron">
   <h1>欢迎<%= @current_user ? '你 '+@current_user.true_name : '加入' %></h1>
   <h2>电子系科协福利培训</h2>

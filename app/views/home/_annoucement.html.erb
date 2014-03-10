@@ -8,11 +8,12 @@
       <div class="modal-body">
         <div id="annoucements_error_msg"></div>
 <% require 'nokogiri' %>
-        <%= raw Nokogiri::HTML::fragment(sanitize(simple_format(@annoucements), :tags=>(%w(br p blockquote em strong code h1 h2 h3 h4 h5 h6 a img)))).to_xml%>
+        <% raw Nokogiri::HTML::fragment(sanitize(simple_format(@annoucements, {}, sanitize: false), tags: %w(br p blockquote em strong code h1 h2 h3 h4 h5 h6 a img), attributes: %w(href target src class style))).to_xml%>
+        <%= raw Nokogiri::HTML::fragment(@annoucements).to_xml%>
 <% if @current_user && (admin1?(@current_user)) %>
         <table class="table"><tbody><tr><td></td></tr></tbody></table>
         <div>
-          <p>如下标签可以使用：<%='<blockquote>,<p>,<em>,<strong>,<code>,<h1>~<h6>,<a>,<img>'%>.</p>
+          <p>请严肃使用管理权限。</p><%'<blockquote>,<p>,<em>,<strong>,<code>,<h1>~<h6>,<a>,<img>'%>
           <%= form_tag '/update_annoucements' ,remote:true %>
           <%= text_area_tag 'annoucement', @annoucements, class:"form-control", style:"height: "+((@annoucements.lines.count()+3)*20).to_s+'px' %>
         </div>
