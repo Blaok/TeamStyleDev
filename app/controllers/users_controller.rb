@@ -43,11 +43,6 @@
       flash[:alert] = '未授权'
       render status: 403
     else
-      if @user.update((0==@current_user.admin) ? user_create_params : user_update_params)
-        flash[:notice] = '修改保存成功'
-      else
-        flash[:notice] = '没有任何修改'
-      end
       @user.destroy
       respond_to do |format|
         format.html { redirect_to users_url }
