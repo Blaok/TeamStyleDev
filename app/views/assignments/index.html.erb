@@ -20,7 +20,7 @@
     <tbody>
       <% @assignments.each do |assignment| %>
         <tr>
-          <td><%= Course.find_by_id(assignment.course_id).name %></td>
+          <td><%= (@course=Course.find_by_id(assignment.course_id)) && @course.name %></td>
           <td><%= assignment.name %></td>
           <td><%= assignment.startat.localtime.to_s(:db) %></td>
           <td><%= assignment.deadline.localtime.to_s(:db) %></td>
