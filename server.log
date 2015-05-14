@@ -1,0 +1,460 @@
+=> Booting WEBrick
+=> Rails 4.0.0 application starting in development on http://0.0.0.0:3000
+=> Run `rails server -h` for more startup options
+=> Ctrl-C to shutdown server
+
+
+Started GET "/" for 166.111.223.20 at 2015-05-14 00:49:18 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  [1m[35mSession Load (0.3ms)[0m  SELECT "sessions".* FROM "sessions" WHERE "sessions"."remember_token" = '1Sf4YucRT4F-UovAp4SnN7g' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered home/_annoucement.html.erb (3.9ms)
+  Rendered home/index.html.erb within layouts/application (86.2ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered layouts/_footer.html.erb (1.6ms)
+Completed 200 OK in 307ms (Views: 205.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 166.111.223.20 at 2015-05-14 00:49:20 +0000
+
+
+Started GET "/assets/home.css?body=1" for 59.66.142.129 at 2015-05-14 00:49:20 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 166.111.223.20 at 2015-05-14 00:49:20 +0000
+
+
+Started GET "/assets/sessions.css?body=1" for 166.111.223.20 at 2015-05-14 00:49:20 +0000
+
+
+Started GET "/assets/signin.css?body=1" for 59.66.142.129 at 2015-05-14 00:49:20 +0000
+
+
+Started GET "/assets/uploads.css?body=1" for 166.111.223.20 at 2015-05-14 00:49:20 +0000
+
+
+Started GET "/assets/users.css?body=1" for 59.66.142.129 at 2015-05-14 00:49:20 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.css?body=1" for 166.111.223.20 at 2015-05-14 00:49:20 +0000
+
+
+Started GET "/assets/assignments.css?body=1" for 59.66.142.129 at 2015-05-14 00:49:20 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 166.111.223.20 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 166.111.223.20 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/assets/courses.js?body=1" for 59.66.142.129 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/assets/home.js?body=1" for 166.111.223.20 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/assets/assignments.js?body=1" for 59.66.142.129 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/assets/sessions.js?body=1" for 59.66.142.129 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/assets/sorttable.js?body=1" for 166.111.223.20 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/assets/tablefilter.js?body=1" for 59.66.142.129 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/assets/uploads.js?body=1" for 166.111.223.20 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/assets/users.js?body=1" for 59.66.142.129 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/assets/application.js?body=1" for 166.111.223.20 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/assets/courses.css?body=1" for 59.66.142.129 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 166.111.223.20 at 2015-05-14 00:49:21 +0000
+
+
+Started GET "/courses" for 59.66.142.129 at 2015-05-14 00:50:00 +0000
+Processing by CoursesController#index as HTML
+  [1m[36mSession Load (0.3ms)[0m  [1mSELECT "sessions".* FROM "sessions" WHERE "sessions"."remember_token" = '1Sf4YucRT4F-UovAp4SnN7g' LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses"[0m
+  Rendered courses/index.html.erb within layouts/application (141.7ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 206ms (Views: 157.0ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/assignments.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/courses.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/home.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/sessions.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/signin.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/uploads.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/users.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/assignments.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/home.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/sessions.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/sorttable.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/tablefilter.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/uploads.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/users.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/application.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/assets/courses.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:01 +0000
+
+
+Started GET "/" for 166.111.223.20 at 2015-05-14 00:50:03 +0000
+Processing by HomeController#index as HTML
+  [1m[36mSession Load (0.3ms)[0m  [1mSELECT "sessions".* FROM "sessions" WHERE "sessions"."remember_token" = '1Sf4YucRT4F-UovAp4SnN7g' LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered home/_annoucement.html.erb (2.0ms)
+  Rendered home/index.html.erb within layouts/application (4.5ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 19ms (Views: 16.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/assignments.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/courses.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/home.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/sessions.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/signin.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/uploads.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/users.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/assignments.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/courses.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/home.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/sessions.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/sorttable.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/users.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/uploads.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/tablefilter.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/assets/application.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:03 +0000
+
+
+Started GET "/courses" for 59.66.142.129 at 2015-05-14 00:50:10 +0000
+Processing by CoursesController#index as HTML
+  [1m[35mSession Load (0.3ms)[0m  SELECT "sessions".* FROM "sessions" WHERE "sessions"."remember_token" = '1Sf4YucRT4F-UovAp4SnN7g' LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses"
+  Rendered courses/index.html.erb within layouts/application (3.5ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 19ms (Views: 15.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/assignments.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/home.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/courses.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/sessions.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/uploads.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/signin.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/users.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/assignments.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/courses.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/home.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/sessions.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/sorttable.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/tablefilter.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/uploads.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/users.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/assets/application.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:10 +0000
+
+
+Started GET "/" for 166.111.223.20 at 2015-05-14 00:50:12 +0000
+Processing by HomeController#index as HTML
+  [1m[35mSession Load (0.2ms)[0m  SELECT "sessions".* FROM "sessions" WHERE "sessions"."remember_token" = '1Sf4YucRT4F-UovAp4SnN7g' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered home/_annoucement.html.erb (2.0ms)
+  Rendered home/index.html.erb within layouts/application (4.3ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 19ms (Views: 16.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/assignments.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/home.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/courses.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/sessions.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/signin.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/uploads.css?body=1" for 59.66.142.129 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/users.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/assignments.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/home.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/sorttable.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/sessions.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/courses.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/tablefilter.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/uploads.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/users.js?body=1" for 59.66.142.129 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/assets/application.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:12 +0000
+
+
+Started GET "/" for 59.66.140.101 at 2015-05-14 00:50:28 +0000
+Processing by HomeController#index as HTML
+  [1m[36mSession Load (0.3ms)[0m  [1mSELECT "sessions".* FROM "sessions" WHERE "sessions"."remember_token" IS NULL LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered home/_annoucement.html.erb (41.7ms)
+  Rendered home/index.html.erb within layouts/application (44.3ms)
+  Rendered users/_signup.html.erb (12.3ms)
+  Rendered users/_signin.html.erb (6.0ms)
+  Rendered layouts/_header.html.erb (20.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 80ms (Views: 77.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 59.66.140.101 at 2015-05-14 00:50:28 +0000
+
+
+Started GET "/assets/courses.css?body=1" for 59.66.140.101 at 2015-05-14 00:50:28 +0000
+
+
+Started GET "/assets/application.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:28 +0000
+
+
+Started GET "/assets/assignments.css?body=1" for 59.66.140.101 at 2015-05-14 00:50:28 +0000
+
+
+Started GET "/assets/home.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:28 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.css?body=1" for 59.66.140.101 at 2015-05-14 00:50:28 +0000
+
+
+Started GET "/assets/sessions.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:28 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 59.66.140.101 at 2015-05-14 00:50:29 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:29 +0000
+
+
+Started GET "/assets/signin.css?body=1" for 59.66.140.101 at 2015-05-14 00:50:29 +0000
+
+
+Started GET "/assets/uploads.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:29 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 59.66.140.101 at 2015-05-14 00:50:29 +0000
+
+
+Started GET "/assets/users.css?body=1" for 166.111.223.20 at 2015-05-14 00:50:29 +0000
+
+
+Started GET "/assets/assignments.js?body=1" for 59.66.140.101 at 2015-05-14 00:50:29 +0000
+
+
+Started GET "/assets/courses.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:29 +0000
+
+
+Started GET "/assets/home.js?body=1" for 59.66.140.101 at 2015-05-14 00:50:29 +0000
+
+
+Started GET "/assets/sessions.js?body=1" for 166.111.223.20 at 2015-05-14 00:50:29 +0000
