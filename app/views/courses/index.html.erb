@@ -27,8 +27,8 @@
           <td><%= link_to '编辑', '', class: 'btn btn-info btn-xs', onclick: "$('#course_"+course.id.to_s+"_details').modal();", remote: true %></td>
           <td><%= link_to '传课件', '', class: 'btn btn-success btn-xs', onclick: "$('#new_upload').modal();document.getElementById('NewUpload').innerHTML='为"+course.name+"课程上传课件';document.getElementById('upload_course_id').value="+course.id.to_s+";", remote: true %></td>
           <td><%= link_to '留作业', '', class: 'btn btn-danger btn-xs', onclick: "$('#new_assignment').modal();document.getElementById('NewAssignment').innerHTML='为"+course.name+"课程布置作业';document.getElementById('assignment_course_id').value="+course.id.to_s+";", remote: true %></td>
-          <% end %>
           <td><%= link_to '删除', course, method: :delete, data: { confirm: '确定?' }, class:'btn btn-warning btn-xs' %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
@@ -73,7 +73,7 @@
     });
     $(function () {
         $('#datetimepicker2').datetimepicker({
-          useSeconds: true, 
+          useSeconds: true,
           pick12HourFormat: false,
           format: 'YYYY-MM-DD HH:mm:ss'
         });
@@ -97,12 +97,12 @@
           <div class="input-daterange input-group">
             <div class='input-group date form-middle' id='datetimepicker1' style="width:100%">
               <%= f.text_field :startat, class: 'form-control form-left-down' %>
-              <span class="input-group-addon form-left-down"><span class="glyphicon glyphicon-calendar"></span></span> 
+              <span class="input-group-addon form-left-down"><span class="glyphicon glyphicon-calendar"></span></span>
             </div>
             <span class="input-group-addon form-center">至</span>
             <div class='input-group date' id='datetimepicker2' style="width:100%">
               <%= f.text_field :deadline, class: 'form-control form-right-down' %>
-              <span class="input-group-addon form-right-down"><span class="glyphicon glyphicon-calendar"></span></span> 
+              <span class="input-group-addon form-right-down"><span class="glyphicon glyphicon-calendar"></span></span>
             </div>
           </div>
         </div>
