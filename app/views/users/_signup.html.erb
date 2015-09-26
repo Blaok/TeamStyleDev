@@ -18,7 +18,7 @@
           <%= f.password_field  :password_confirmation, class: class_middle, placeholder:'确认密码'    %>
           <%= f.text_field      :true_name,             class: class_middle, placeholder:'姓名'        %>
           <%= f.select(:gender, [['男',true],['女',false]], {prompt: '请选择性别'}, class: class_middle ) %>
-          <%= f.select(:administration, [['教员','1'],['学员','3']], {prompt: '请选择组别'}, class: class_middle ) %>
+          <%= f.select(:administration, [['学员','3']], {prompt: '请选择组别'}, class: class_middle ) %>
           <%= f.text_field      :class_name,            class: class_middle, placeholder:'班级'        %>
           <%= f.text_field      :mobile,                class: class_middle, placeholder:'手机'        %>
           <%= f.text_field      :qq,                    class: class_middle, placeholder:'QQ号,可选'   %>
@@ -32,4 +32,4 @@
     </div>
   </div>
 <% end %>
-</div> 
+</div>
